@@ -1,0 +1,43 @@
+html {
+    background-color: #CFB997;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+body {
+    height: 100%;
+}
+
+.container {
+    background-color: #7B8FA1;
+    margin: 50px auto;
+    width: fit-content;
+    min-width: 600px;
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    /* border-style: solid;
+    border-color: #567189; */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+   
+}
+
+.card-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-region,.card-subregion,.card-extras {
+    margin: auto 2em ;
+    padding: 3px ;
+}
+
+.cards {
+    display: flex;
+    
+    align-content: center;
+}

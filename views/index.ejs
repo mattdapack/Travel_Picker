@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,600;1,400&family=Titillium+Web:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="icon" href="/airplane.svg">
+    <title>Where to Next?</title>
+</head>
+<body>
+    
+        <div class="container">
+            <h1>
+                <span class="material-symbols-outlined">flight_takeoff</span>
+                Let's pick a random destination! 
+                <span class="material-symbols-outlined">flight_land</span>
+            </h1>
+      
+          <form action="/" id="form" class="form" method="POST">
+            <select name="region" class="form-select">
+              <option value="" data-display="Select">Country Region</option>
+              <% for(var i = 0; i < region.length; i++) {%>
+                <!-- <#% locals.region.forEach((element) => {%> -->
+                    <option value= "<%=region[i]%>"> <%=region[i]%> </option>
+                <% };%>
+
+              <!--<option value="music">Music</option> -->
+            </select>
+            <select name="subregion" class="form-select">
+              <option value="">Country Sub Region</option>
+
+              <% for(var i = 0; i < subregion.length; i++) {%>
+                    <option value= "<%=subregion[i]%>"> <%=subregion[i]%> </option>
+                <% };%>
+              <!-- <option value="1">1</option>-->
+            </select>
+            <button type="submit" class="form-submit">Let's Go!</button>
+          </form>
+          <section id="cards" class="cards">
+            <article class="card-item">
+              <h2 class="card-countries">
+                <!-- List of Countries -->
+                <% if (locals.country) {%> 
+            <ul>
+                <% for(var i = 0; i < country.length; i++) {%>
+                    <li><%= country[i] %></li>
+                    <% }; %>
+            </ul>
+              </h2>
+              <div class="card-info">
+                <span class="card-region">
+                  <!-- should any other details be put in -->
+                  <p>  region </p>
+                </span>
+                <span class="card-subregion">
+                  <!-- should any other details be put in -->
+                  <p> subregion </p>
+                </span>
+                <span class="card-extras">
+                    <!-- should any other details be put in -->
+                    <p><%= misc %></p>
+                  </span>
+              </div>
+            </article>
+            <%} else { %>
+                <div id="tag-error" class="tag-error">
+                  <!-- Show any errors that were sent from the backend -->
+                  <h2><%#=error%></h2>
+                </div>
+                <% } %>
+          </section>
+        </div>
+      
+
+</body>
+</html>
