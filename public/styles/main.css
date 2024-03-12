@@ -26,18 +26,36 @@ body {
    
 }
 
+.form {
+    margin: 2px;
+    /* height: 2em; */
+    
+}
+.form-select,.form-submit {
+    height: 2em;
+    border-radius: 12px;
+}
+.card-countries {
+    text-align: center;
+}
+
 .card-info {
     display: flex;
     flex-direction: row;
 }
+#lang-title {
+    margin: .5em;
+}
 
-.card-region,.card-subregion,.card-extras {
+.card-lang,.card-subregion,.card-extras {
     margin: auto 2em ;
     padding: 3px ;
+}
+.card-lang>ul {
+    padding-inline-start: 10px;
 }
 
 .cards {
     display: flex;
-    
     align-content: center;
 }

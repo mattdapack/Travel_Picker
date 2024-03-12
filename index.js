@@ -52,44 +52,56 @@ app.post("/", async(req,res) => {
     const newRegion = [];
     const newSubregion = [];
     const countryList = [];
-    const regionList = [];
-    const subregionList = [];
+    // const regionList = [];
+    // const subregionList = [];
     const miscList = [];
      var bodyRegion = req.body.region
-    var bodySubregion = req.body.subregion
+    // var bodySubregion = req.body.subregion
  try {
     var response = await axios.get(apiUrl)
-    var result = response.data
+    var result = response.data.filter((country) => country.region == bodyRegion)
+    // console.log(result)
 
         for (var i = 0; i < response.data.length; i++) {
-            
                 newRegion.push(response.data.at(i).region)
                 newSubregion.push(response.data.at(i).subregion)
-            // console.log(response.data.at(i))
-            
+
         }
+        // console.log(response.data.at(i).region)
        const uniqueRegion = [...new Set(newRegion)]
        const uniqueSubregion = [...new Set(newSubregion)]
-        console.log(uniqueRegion)
 
+
+//This produces the list populated in the country ideas box
 for (var i = 0; i < response.data.length; i++) {
-            if (response.data.at(i).region == bodyRegion) {
-            // console.log(response.data.at(i).name)        
-            //     if(speficiedRegion.includes(bodyRegion)) {
+            if (response.data.at(i).region == bodyRegion ) {
+
             countryList.push(response.data.at(i).name.common);
-            regionList.push(response.data.at(i).region);
-            subregionList.push(response.data.at(i).subregion);
-            miscList.push(response.data.at(i).capital);
+
 
          }
         }
-        // console.log(countryList);
+
+    var randomCountry =  Math.floor(Math.random() * countryList.length)
+    var resultCapital = result.filter((List)=> List.name.common == countryList[randomCountry] )
+    var subRegion = resultCapital[0].subregion
+    var capital = resultCapital[0].capital
+    var languageList = resultCapital[0].languages
+    // Object.entries(languageList).forEach(([key, value]) => {
+    //     console.log(`${key}: ${value}`);
+    //     });
+        // console.log(resultCapital);
+        // console.log(languageList);
+        // console.log(Object.entries(languageList));
+        
 
         res.render("index.ejs", {
             region: uniqueRegion,
             subregion: uniqueSubregion,
-            country: countryList,
-            misc: miscList
+            country: countryList[randomCountry],
+            randomSubregion: subRegion,
+            misc: capital[0],
+            languages: languageList, //JSON.stringify(
         })
 
 }  catch (error) {

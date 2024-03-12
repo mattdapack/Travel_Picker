@@ -26,7 +26,7 @@
             <select name="region" class="form-select">
               <option value="" data-display="Select">Country Region</option>
               <% for(var i = 0; i < region.length; i++) {%>
-                <!-- <#% locals.region.forEach((element) => {%> -->
+
                     <option value= "<%=region[i]%>"> <%=region[i]%> </option>
                 <% };%>
 
@@ -36,9 +36,10 @@
               <option value="">Country Sub Region</option>
 
               <% for(var i = 0; i < subregion.length; i++) {%>
+                
                     <option value= "<%=subregion[i]%>"> <%=subregion[i]%> </option>
                 <% };%>
-              <!-- <option value="1">1</option>-->
+              
             </select>
             <button type="submit" class="form-submit">Let's Go!</button>
           </form>
@@ -46,32 +47,35 @@
             <article class="card-item">
               <h2 class="card-countries">
                 <!-- List of Countries -->
-                <% if (locals.country) {%> 
-            <ul>
-                <% for(var i = 0; i < country.length; i++) {%>
-                    <li><%= country[i] %></li>
-                    <% }; %>
-            </ul>
+                <% if (locals.country) { %>
+                    <%= country %>
               </h2>
               <div class="card-info">
-                <span class="card-region">
-                  <!-- should any other details be put in -->
-                  <p>  region </p>
+                <span class="card-lang">
+                  <!-- Languages spoken in the random country -->
+                  <h4 id="lang-title">Languages</h4>
+                  <ul>
+                    
+                    <% Object.entries(languages).forEach(([key, value]) => { %>
+                       <li><%=`${key}: ${value}` %></li> <!--console.log(`${key}: ${value}`); -->
+                     <% }); %>
+                  
+                </ul>
                 </span>
                 <span class="card-subregion">
                   <!-- should any other details be put in -->
-                  <p> subregion </p>
+                  <p> Subregion: <%= randomSubregion %> </p>
                 </span>
                 <span class="card-extras">
-                    <!-- should any other details be put in -->
-                    <p><%= misc %></p>
+                    <!-- Capital of the random country -->
+                    <p> Capital: <%=misc%></p>
                   </span>
               </div>
             </article>
             <%} else { %>
                 <div id="tag-error" class="tag-error">
                   <!-- Show any errors that were sent from the backend -->
-                  <h2><%#=error%></h2>
+                  <h2>Let's pick a spot!<%#=error%></h2>
                 </div>
                 <% } %>
           </section>
@@ -80,3 +84,9 @@
 
 </body>
 </html>
+
+<!-- 
+  <#% for(var i = 0; i < languages.length; i++) {%>
+    <li>  <#%=languages[i]%> </li>
+    <#% }; %>
+-->
